@@ -5,6 +5,7 @@ class Standard_m extends CI_Model {
 	public function insert($data)
 	{
 		$this->db->insert('validation', $data);
+		return $this->db->insert_id();
 	}
 }
 
