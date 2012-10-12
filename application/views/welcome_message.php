@@ -47,7 +47,7 @@
 	#body{
 		margin: 0 15px 0 15px;
 	}
-	
+
 	p.footer{
 		text-align: right;
 		font-size: 11px;
@@ -56,7 +56,7 @@
 		padding: 0 10px 0 10px;
 		margin: 20px 0 0 0;
 	}
-	
+
 	#container{
 		margin: 10px;
 		border: 1px solid #D0D0D0;
@@ -67,18 +67,29 @@
 <body>
 
 <div id="container">
-	<h1>Welcome to CodeIgniter!</h1>
+	<h1>Welcome to my Test!</h1>
 
 	<div id="body">
-		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
+		<code>
+			<p>Standard CodeIgniter <a href="<?=base_url('welcome/standard');?>">Validation Test</a></p>
 
-		<p>If you would like to edit this page you'll find it located at:</p>
-		<code>application/views/welcome_message.php</code>
+			<p>Rumbelow's MY_Model <a href="<?=base_url('welcome/mymodel');?>">Validation Test</a></p>
+		</code>
+		<p>In both tests, 'Rule' validation works as expected. However, 'Prepping' validation only appears to work in the standard CodeIgniter example. The MY_Model example appears to completely ingore any prepping functions.</p>
 
-		<p>The corresponding controller for this page is found at:</p>
-		<code>application/controllers/welcome.php</code>
+		<code>NOTE: The form will <b>show</b> the field as prepared by the validation, but the <b>untouched, unsanitized data is written to the database</b>.</code>
 
-		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
+		<p>To test 'Rule' functions:
+			<ul>
+				<li>Leave any field bank</li>
+				<li>Enter anything other than integers in the 'Integer' field</li>
+				<li>Enter more than 10 characters in the 'Short Text' field</li>
+			</ul>
+		<p>To test 'Prepping' functions:
+			<ul>
+				<li>Enter any HTML tags in the 'Short Text" or 'Long Text' fields</li>
+			</ul>
+		</p>
 	</div>
 
 	<p class="footer">Page rendered in <strong>{elapsed_time}</strong> seconds</p>
