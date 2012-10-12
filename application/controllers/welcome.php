@@ -40,23 +40,20 @@ class Welcome extends CI_Controller {
 
 		$this->form_validation->set_rules($config);
 
-		if ($this->form_validation->run())
+		if ($this->input->post() && $this->form_validation->run())
 		{
 			$this->load->model('standard_m');
-			$this->standard_m->insert($this->input->post());
-			echo 'Success!';
+
+			if ($this->standard_m->insert($this->input->post()))
+			{
+				// Successfully inserted
+				redirect('welcome/woot');
+			}
 		}
 		else
 		{
-			echo validation_errors();
+			$this->load->view('form_v');
 		}
-
-		echo form_open();
-		echo '<br />' . form_input('integer', set_value('integer')) . ' - Integer';
-		echo '<br />' . form_input('shorttext', set_value('shorttext')) . ' - Short Text';
-		echo '<br />' . form_input('longtext', set_value('longtext')) . ' - Long Text';
-		echo '<br />' . form_submit('', 'submit');
-		echo form_close();
 	}
 
 	/**
@@ -70,20 +67,21 @@ class Welcome extends CI_Controller {
 		{
 			if ($this->mymodel_m->insert($this->input->post()))
 			{
-				echo 'Success!';
-			}
-			else
-			{
-				echo validation_errors();
+				// Successfully inserted
+				redirect('welcome/woot');
 			}
 		}
+		$this->load->view('form_v');
+	}
 
-		echo form_open();
-		echo '<br />' . form_input('integer', set_value('integer')) . ' - Integer';
-		echo '<br />' . form_input('shorttext', set_value('shorttext')) . ' - Short Text';
-		echo '<br />' . form_input('longtext', set_value('longtext')) . ' - Long Text';
-		echo '<br />' . form_submit('', 'submit');
-		echo form_close();
+	public function woot()
+	{
+		$this->load->view('woot_v');
+	}
+
+	public function boo()
+	{
+		$this->load->view('boo_v');
 	}
 }
 
